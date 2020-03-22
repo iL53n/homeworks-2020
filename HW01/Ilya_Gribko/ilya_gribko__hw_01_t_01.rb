@@ -8,10 +8,7 @@ def angle_time
     puts 'What time is it?(analog):'
     time = gets.chomp
 
-    if time != '' && time_check(time)
-      implement(time)
-      break
-    end
+    time_check(time) ? implement(time) : inv_format_message
   end
 end
 
@@ -31,7 +28,11 @@ def angle(time)
 end
 
 def time_check(input)
-  input =~ /^\d{1,2}:\d{2}$/
+  /^\d{1,2}:\d{2}$/.match?(input)
+end
+
+def inv_format_message
+  puts "Input format isn't valid!"
 end
 
 angle_time
