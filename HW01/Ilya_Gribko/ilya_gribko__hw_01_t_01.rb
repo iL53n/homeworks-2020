@@ -17,7 +17,7 @@ class AngleTime
         implement(time)
         break
       else
-        inv_format_message
+        invalid_format_message
       end
     end
   end
@@ -46,7 +46,7 @@ class AngleTime
     /^\d{1,2}:\d{2}$/.match?(input)
   end
 
-  def inv_format_message
+  def invalid_format_message
     puts "Input format isn't valid!"
   end
 end

@@ -13,47 +13,47 @@ just_equation(24, '1 / 3 + 6 * 4')
 # ToDo: Need refactoring
 # (method is sensitive to the number of elem in the numbers_array and not DRY)
 
-def search_equation(number, numbers_array, actions_array)
-  numbers_array = numbers_array.permutation.to_a
-
-  numbers_array.each do |combination|
-    actions_array.each do |action|
-      n = 0
-      iter1 = iteration(combination[n],
-                        action,
-                        combination[n + 1],
-                        combination[n])
-
-      actions_array.each do |action|
-        n = 1
-        iter2 = iteration(iter1[:value],
-                          action,
-                          combination[n + 1],
-                          iter1[:string])
-
-        actions_array.each do |action|
-          n = 2
-          iter3 = iteration(iter2[:value],
-                            action,
-                            combination[n + 1],
-                            iter2[:string])
-
-          message(number, iter3[:string]) if iter3[:value] == number
-        end
-      end
-    end
-  end
-end
-
-private
-
-def iteration(value1, action, value2, str)
-  { value: (value1.send action, value2),
-    string: "#{str} #{action} #{value2}" }
-end
-
-def message(number, equation)
-  puts "#{number} == #{equation}"
-end
-
-search_equation(24, [1, 3, 4, 6], %w[+ / *])
+# def search_equation(number, numbers_array, actions_array)
+#   numbers_array = numbers_array.permutation.to_a
+#
+#   numbers_array.each do |combination|
+#     actions_array.each do |action|
+#       n = 0
+#       iter1 = iteration(combination[n],
+#                         action,
+#                         combination[n + 1],
+#                         combination[n])
+#
+#       actions_array.each do |action|
+#         n = 1
+#         iter2 = iteration(iter1[:value],
+#                           action,
+#                           combination[n + 1],
+#                           iter1[:string])
+#
+#         actions_array.each do |action|
+#           n = 2
+#           iter3 = iteration(iter2[:value],
+#                             action,
+#                             combination[n + 1],
+#                             iter2[:string])
+#
+#           message(number, iter3[:string]) if iter3[:value] == number
+#         end
+#       end
+#     end
+#   end
+# end
+#
+# private
+#
+# def iteration(value1, action, value2, str)
+#   { value: (value1.send action, value2),
+#     string: "#{str} #{action} #{value2}" }
+# end
+#
+# def message(number, equation)
+#   puts "#{number} == #{equation}"
+# end
+#
+# search_equation(24, [1, 3, 4, 6], %w[+ / *])
