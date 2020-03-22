@@ -6,7 +6,11 @@ def just_equation(number)
   # use 'eval' here for educational purposes only
   # security risk
   # puts "#{number} == #{equation}" if number == eval(equation)
-  puts "#{number} == 1 / 3 + 6 * 4" if number == 1 / 3 + 6 * 4
+  puts "#{number} == 1 / 3 + 6 * 4" if number == equation
+end
+
+def equation
+  1 / 3 + 6 * 4
 end
 
 just_equation(24)
