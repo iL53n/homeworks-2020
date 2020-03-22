@@ -20,16 +20,21 @@ end
 private
 
 def implement(time)
-  time_array = time.split(':')
-  degrees = angle(time_array)
+  time_hash = time_str_to_hash(time)
+  degrees = angle(time_hash)
   puts "#{degrees} degrees"
 end
 
 def angle(time)
-  hours_position = time[0].to_i * 30
-  minutes_position = time[1].to_i * 6
+  hours_position = time[:hours] * 30
+  minutes_position = time[:minutes] * 6
   angle = (hours_position - minutes_position).abs
   angle > 180 ? 360 - angle : angle
+end
+
+def time_str_to_hash(time)
+  time_array = time.split(':')
+  { hours: time_array[0].to_i, minutes: time_array[1].to_i }
 end
 
 def time_check(input)
