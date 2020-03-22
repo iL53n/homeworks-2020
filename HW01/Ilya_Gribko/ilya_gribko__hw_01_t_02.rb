@@ -2,12 +2,14 @@
 # and 6 you can only divide, multiply or add them? + / *
 # | Output example: 24 == 1 / 3 * 4 + 6
 
-def just_equation(number, equation)
+def just_equation(number)
   # use 'eval' here for educational purposes only
-  puts "#{number} == #{equation}" if number == eval(equation)
+  # security risk
+  # puts "#{number} == #{equation}" if number == eval(equation)
+  puts "#{number} == 1 / 3 + 6 * 4" if number == 1 / 3 + 6 * 4
 end
 
-just_equation(24, '1 / 3 + 6 * 4')
+just_equation(24)
 
 ### V2 NOT FOR CHECK, but one beer from me if you help me :)
 # ToDo: Need refactoring
