@@ -8,7 +8,12 @@ def angle_time
     puts 'What time is it?(analog):'
     time = gets.chomp
 
-    time_check(time) ? implement(time) : inv_format_message
+    if time_check(time)
+      implement(time)
+      break
+    else
+      inv_format_message
+    end
   end
 end
 
