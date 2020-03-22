@@ -5,7 +5,7 @@
 
 def angle_time
   loop do
-    puts 'What time is it?(analog):'
+    puts 'What time is it?(analog, e.g. 3:15, 3:20, 4:30 ... etc):'
     time = gets.chomp
 
     if time_check(time)
