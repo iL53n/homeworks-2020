@@ -14,11 +14,19 @@
 # IP_format -- [DATE_format] "MESSAGE_format" ...
 # "DATE_format FROM: IP_format TO: MESSAGE_format"
 
-IP_FORMAT = %r{/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/}.freeze
-DATE_FORMAT = %r{\[\d{1,2}/\w+/\d{4}:\d{2}:\d{2}:\d{2} \+\d+\]}.freeze
-MESSAGE_FORMAT = %r{/\"(.+)\"/}.freeze
+IP_FORMAT = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.freeze
+DATE_FORMAT = %r{\d{1,2}/\w+/\d{4}:\d{2}:\d{2}:\d{2} \+\d{1,4}}.freeze
+MESSAGE_FORMAT = /\"(.+)\"/.freeze
 
 
 def task_2(file_name)
-
+  File.foreach(file_name) do |f|
+    ip = f.match(IP_FORMAT)
+    date = f.match(DATE_FORMAT)
+    message = f.match(MESSAGE_FORMAT)
+    puts "#{date} FROM: #{ip} TO: #{message}"
+    break
+  end
 end
+
+task_2('data_test_with_errors.log')
