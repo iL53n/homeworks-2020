@@ -14,19 +14,22 @@
 # IP_format -- [DATE_format] "MESSAGE_format" ...
 # "DATE_format FROM: IP_format TO: MESSAGE_format"
 
-IP_FORMAT = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.freeze
+IP_FORMAT = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.freeze
 DATE_FORMAT = %r{\d{1,2}/\w+/\d{4}:\d{2}:\d{2}:\d{2} \+\d{1,4}}.freeze
-MESSAGE_FORMAT = /\"(.+)\"/.freeze
-
+MESSAGE_FORMAT = %r{(?<= "POST )(.+)(?= HTTP/1.1)}.freeze
 
 def task_2(file_name)
   File.foreach(file_name) do |f|
-    ip = f.match(IP_FORMAT)
-    date = f.match(DATE_FORMAT)
-    message = f.match(MESSAGE_FORMAT)
-    puts "#{date} FROM: #{ip} TO: #{message}"
-    break
+    line = parse_line(f)
+    puts line
   end
+end
+
+def parse_line(line)
+  ip = line.match(IP_FORMAT)
+  date = line.match(DATE_FORMAT)
+  message = line.match(MESSAGE_FORMAT)
+  "#{date} FROM: #{ip} TO: #{message}"
 end
 
 task_2('data_test_with_errors.log')
