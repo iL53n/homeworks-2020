@@ -1,5 +1,5 @@
 # Method task_2 should return:
-# * an array of formatted strings containing information about post requests;
+# [X] an array of formatted strings containing information about post requests;
 # * for the example above, the result should be:
 # [
 #   "23/Apr/2018:20:30:39 +0300 FROM: 10.6.246.103 TO: /TEST/2/MESSAGES",
@@ -19,10 +19,14 @@ DATE_FORMAT = %r{\d{1,2}/\w+/\d{4}:\d{2}:\d{2}:\d{2} \+\d{1,4}}.freeze
 MESSAGE_FORMAT = %r{(?<= "POST )(.+)(?= HTTP/1.1)}.freeze
 
 def task_2(file_name)
+  arr = []
+
   File.foreach(file_name) do |f|
     line = parse_line(f)
-    puts line
+    arr << line
   end
+
+  puts arr
 end
 
 def parse_line(line)
@@ -30,6 +34,10 @@ def parse_line(line)
   date = line.match(DATE_FORMAT)
   message = line.match(MESSAGE_FORMAT)
   "#{date} FROM: #{ip} TO: #{message}"
+end
+
+def format_match?(line)
+
 end
 
 task_2('data_test_with_errors.log')
