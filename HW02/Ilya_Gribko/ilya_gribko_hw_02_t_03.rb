@@ -8,14 +8,26 @@
 # [ ] * If there are many events, the methods should return an array of duration
 # between 1st and 2nd, 2nd and 3rd and etc. Example: ["40.1", "42.2"]
 
+TIME_FORMAT = /\d{1,2}:\d{1,2}:\d{1,2}.\d{1}/.freeze
+
 def task_3(file_name)
   parse_log_file(file_name)
 end
 
 def parse_log_file(file_name)
   File.foreach(file_name) do |f|
-    puts f
+    if f.include?('Calling core with action:')
+      puts second(f.match(TIME_FORMAT).to_s)
+    end
   end
+end
+
+def second(time)
+  arr = time.split(':')
+  hours = arr[0].to_f * 60 * 60
+  minutes = arr[1].to_f * 60
+  seconds = arr.last.to_f
+  hours + minutes + seconds
 end
 
 task_3('debug_data_test.log')
