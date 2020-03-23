@@ -3,15 +3,13 @@
 # * If the input is text that does not contain the word error, return an empty string
 
 class Task1
-  def initialize
+  def initialize(file_name)
     @error = false
-    task_1('data_test.log')
+    task_1(file_name)
   end
 
   def task_1(file_name)
     File.foreach(file_name) do |f|
-
-
       if error?(f)
         error_line(f)
         break # only first error line
@@ -32,5 +30,10 @@ class Task1
   end
 end
 
-Task1.new
+puts 'Return from errors file:'
+Task1.new('data_test_with_errors.log')
+
+puts 'Return from NOT errors file:'
+Task1.new('data_test_without_errors.log')
+
 
