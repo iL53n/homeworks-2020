@@ -4,8 +4,15 @@
 
 def task_1(file_name)
   File.foreach(file_name) do |f|
-    puts f if f.include?('error')
+    if error?(f)
+      puts f
+      break # only first error line
+    end
   end
+end
+
+def error?(line)
+  line.include?('error')
 end
 
 task_1('data_test.log')
