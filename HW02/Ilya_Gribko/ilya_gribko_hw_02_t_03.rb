@@ -16,17 +16,22 @@ end
 
 def parse_log_file(file_name)
   File.foreach(file_name) do |f|
-    if f.include?('Calling core with action:')
-      puts second(return_time(f))
+    if format_match?(f)
+      puts to_seconds(return_time(f))
     end
   end
+end
+
+def format_match?(line)
+  line.include?('Calling core with action:') &&
+  line.match?(TIME_FORMAT)
 end
 
 def return_time(line)
   line.match(TIME_FORMAT).to_s
 end
 
-def second(time)
+def to_seconds(time)
   arr = time.split(':')
   hours = arr[0].to_f * 60 * 60
   minutes = arr[1].to_f * 60
