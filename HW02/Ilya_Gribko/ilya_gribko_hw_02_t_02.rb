@@ -10,8 +10,6 @@
 # [X] if there is no suitable string at the input,
 #   the method should return an empty array
 # [ ] Rubocop check
-#
-# 10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /grid/2/messages HTTP/1.1" 200 48 0.0498
 # IP_format -- [DATE_format] "MESSAGE_format" ...
 # "DATE_format FROM: IP_format TO: MESSAGE_format"
 
