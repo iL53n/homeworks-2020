@@ -7,7 +7,7 @@
 #   "23/Apr/2018:20:31:39 +0300 FROM: 10.6.246.101 TO: /TEST/2/MESSAGES"
 # ]
 # [X] lines that do not match the format should be ignored
-# [ ] if there is no suitable string at the input,
+# [X] if there is no suitable string at the input,
 #   the method should return an empty array
 # [ ] Rubocop check
 #
@@ -19,27 +19,37 @@ IP_FORMAT = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.freeze
 DATE_FORMAT = %r{\d{1,2}/\w+/\d{4}:\d{2}:\d{2}:\d{2} \+\d{1,4}}.freeze
 MESSAGE_FORMAT = %r{(?<= "POST )(.+)(?= HTTP/1.1)}.freeze
 
-def task_2(file_name)
-  arr = []
-
-  File.foreach(file_name) do |f|
-    arr << parse_line(f) if format_match?(f)
+class Task2
+  def initialize(file_name)
+    @arr = []
+    task_2(file_name)
   end
 
-  arr.empty? ? arr : puts(arr)
+  def task_2(file_name)
+    parse_log_file(file_name)
+    @arr.empty? ? @arr : puts(@arr)
+  end
+
+  private
+
+  def parse_log_file(file_name)
+    File.foreach(file_name) do |f|
+      @arr << parse_line(f) if format_match?(f)
+    end
+  end
+
+  def parse_line(line)
+    ip = line.match(IP_FORMAT)
+    date = line.match(DATE_FORMAT)
+    message = line.match(MESSAGE_FORMAT).to_s.capitalize
+    "#{date} FROM: #{ip} TO: #{message}"
+  end
+
+  def format_match?(line)
+    line.match?(IP_FORMAT) &&
+      line.match?(DATE_FORMAT) &&
+      line.match?(MESSAGE_FORMAT)
+  end
 end
 
-def parse_line(line)
-  ip = line.match(IP_FORMAT)
-  date = line.match(DATE_FORMAT)
-  message = line.match(MESSAGE_FORMAT).to_s.capitalize
-  "#{date} FROM: #{ip} TO: #{message}"
-end
-
-def format_match?(line)
-  line.match?(IP_FORMAT) &&
-  line.match?(DATE_FORMAT) &&
-  line.match?(MESSAGE_FORMAT)
-end
-
-task_2('data_test_with_errors.log')
+Task2.new('data_test_with_errors.log')
