@@ -9,7 +9,13 @@ class Task1
   end
 
   def task_1(file_name)
-    File.foreach(file_name) do |f|
+    error_checking(file_name)
+  end
+
+  private
+
+  def error_checking(file)
+    File.foreach(file) do |f|
       if error?(f)
         error_line(f)
         break # only first error line
@@ -17,8 +23,6 @@ class Task1
     end
     puts '' unless @error # return an empty line
   end
-
-  private
 
   def error?(line)
     line.include?('error')
@@ -30,10 +34,10 @@ class Task1
   end
 end
 
-puts 'Return from errors file:'
+puts 'Return from errors file:' # error first line
 Task1.new('data_test_with_errors.log')
 
-puts 'Return from NOT errors file:'
+puts 'Return from NOT errors file:' # empty line
 Task1.new('data_test_without_errors.log')
 
 
