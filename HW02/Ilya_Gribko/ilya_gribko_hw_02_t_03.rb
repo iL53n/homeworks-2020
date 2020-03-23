@@ -19,16 +19,13 @@ def parse_log_file(file_name)
   @arr = []
 
   File.foreach(file_name) do |f|
-    if format_match?(f)
-      p return_datetime(f)
-      seconds = to_seconds(return_datetime(f))
-      @arr << seconds
-    end
+    @arr << f if format_match?(f)
   end
 
   n = 0
   while n < @arr.count - 1
-    puts (@arr[n + 1] - @arr[n]).round(1).to_s
+    print "(#{@arr[n + 1].match(DATETIME_FORMAT)} - #{@arr[n].match(DATETIME_FORMAT)}) = "
+    puts (to_seconds(@arr[n + 1]) - to_seconds(@arr[n])).round(1)
     n += 1
   end
 end
@@ -36,10 +33,6 @@ end
 def format_match?(line)
   line.include?('Calling core with action:') &&
   line.match?(DATETIME_FORMAT)
-end
-
-def return_datetime(line)
-  line.match(DATETIME_FORMAT).to_s
 end
 
 def to_seconds(time)
