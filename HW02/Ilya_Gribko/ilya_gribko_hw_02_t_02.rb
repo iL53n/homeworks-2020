@@ -9,7 +9,7 @@
 # [X] lines that do not match the format should be ignored
 # [X] if there is no suitable string at the input,
 #   the method should return an empty array
-# [ ] Rubocop check
+# [X] Rubocop check
 # IP_format -- [DATE_format] "MESSAGE_format" ...
 # "DATE_format FROM: IP_format TO: MESSAGE_format"
 
