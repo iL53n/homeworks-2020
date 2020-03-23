@@ -22,7 +22,7 @@ MESSAGE_FORMAT = %r{(?<= "POST )(.+)(?= HTTP/1.1)}.freeze
 class Task2
   def initialize(file_name)
     @arr = []
-    task_2(file_name)
+    task_2(file_name) if check_file_name?(file_name)
   end
 
   def task_2(file_name)
@@ -31,6 +31,10 @@ class Task2
   end
 
   private
+
+  def check_file_name?(file_name)
+    File.exist?(file_name) ? true : puts('File not found!')
+  end
 
   def parse_log_file(file_name)
     File.foreach(file_name) do |f|
