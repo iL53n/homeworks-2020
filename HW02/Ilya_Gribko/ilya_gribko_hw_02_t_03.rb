@@ -15,10 +15,19 @@ def task_3(file_name)
 end
 
 def parse_log_file(file_name)
+  @arr = []
+
   File.foreach(file_name) do |f|
     if format_match?(f)
-      puts to_seconds(return_time(f))
+      seconds = to_seconds(return_time(f))
+      @arr << seconds
     end
+  end
+
+  n = 0
+  while n < @arr.count - 1
+    puts (@arr[n + 1] - @arr[n]).round(1).to_s
+    n += 1
   end
 end
 
