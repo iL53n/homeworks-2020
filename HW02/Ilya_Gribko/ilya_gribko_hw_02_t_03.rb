@@ -13,26 +13,35 @@ DATETIME_FORMAT = /\d{4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}.\d{1}/.freeze
 
 def task_3(file_name)
   parse_log_file(file_name)
+  output_result
 end
 
 def parse_log_file(file_name)
   @arr = []
 
   File.foreach(file_name) do |f|
-    @arr << f if format_match?(f)
+    @arr << add_hash(f) if format_match?(f)
   end
+end
 
+def output_result
   n = 0
   while n < @arr.count - 1
-    print "(#{@arr[n + 1].match(DATETIME_FORMAT)} - #{@arr[n].match(DATETIME_FORMAT)}) = "
-    puts (to_seconds(@arr[n + 1]) - to_seconds(@arr[n])).round(1)
+    reduced = @arr[n + 1]
+    subtracted = @arr[n]
+    difference = (reduced[:seconds] - subtracted[:seconds]).round(1)
+    puts "(#{reduced[:time_date]} - #{subtracted[:time_date]}) = #{difference}"
     n += 1
   end
 end
 
 def format_match?(line)
   line.include?('Calling core with action:') &&
-  line.match?(DATETIME_FORMAT)
+    line.match?(DATETIME_FORMAT)
+end
+
+def add_hash(line)
+  { time_date: line.match(DATETIME_FORMAT), seconds: to_seconds(line) }
 end
 
 def to_seconds(time)
