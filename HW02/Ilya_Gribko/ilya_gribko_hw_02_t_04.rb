@@ -7,7 +7,11 @@ LETTERS = /[a-zA-Z]/.freeze
 DIGITS = /[0-9]/.freeze
 
 def task_4(string)
-  puts string.scan(LETTERS).count
+  puts to_hash(string)
+end
+
+def to_hash(string)
+  { letters: count_letters(string), digits: count_digits(string) }
 end
 
 def count_letters(string)
@@ -19,3 +23,4 @@ def count_digits(string)
 end
 
 task_4("hel2!lo")
+task_4("wicked .. !")
