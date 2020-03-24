@@ -1,4 +1,5 @@
-# 4. An arbitrary string is given, the method task_4 must return the count of letters and digits in that string.
+# 4. An arbitrary string is given, the method task_4 must return
+# the count of letters and digits in that string.
 #  Example:
 #  task_4("hel2!lo") # --> {letters: 5, digits: 1}
 #  task_4("wicked .. !") # --> 6 --- {letters: 6, digits: 0}
@@ -22,5 +23,5 @@ def count_digits(string)
   string.scan(DIGITS).count
 end
 
-task_4("hel2!lo")
-task_4("wicked .. !")
+task_4('hel2!lo')
+task_4('wicked .. !')
