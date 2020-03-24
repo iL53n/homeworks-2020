@@ -7,5 +7,15 @@ LETTERS = /[a-zA-Z]/.freeze
 DIGITS = /[0-9]/.freeze
 
 def task_4(string)
-
+  puts string.scan(LETTERS).count
 end
+
+def count_letters(string)
+  string.scan(LETTERS).count
+end
+
+def count_digits(string)
+  string.scan(DIGITS).count
+end
+
+task_4("hel2!lo")
