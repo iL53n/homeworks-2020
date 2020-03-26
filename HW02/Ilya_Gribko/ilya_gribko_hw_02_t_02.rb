@@ -23,12 +23,12 @@ class Task2
     "\\\"POST #{MESSAGE_FORMAT} \\HTTP/1.1\".*".freeze
 
   def initialize(file_name)
+    @file_name = file_name
     @arr = []
-    task_2(file_name) if check_file_name?(file_name)
   end
 
-  def task_2(file_name)
-    parse_log_file(file_name)
+  def task_2
+    parse_log_file(@file_name) if check_file_name?(@file_name)
     @arr.empty? ? @arr : puts(@arr)
   end
 
@@ -56,4 +56,4 @@ class Task2
   end
 end
 
-Task2.new('data_test_with_errors.log')
+Task2.new('data_test_with_errors.log').task_2
