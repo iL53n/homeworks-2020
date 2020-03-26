@@ -6,38 +6,29 @@
 
 class Task1
   def initialize(file_name)
-    @error = false
-    task_1(file_name)
+    @file_name = file_name
+    @string = ''
   end
 
-  def task_1(file_name)
-    error_checking(file_name)
+  def task_1
+    error_checking(@file_name)
   end
 
   private
 
   def error_checking(file)
-    File.foreach(file) do |f|
-      if error?(f)
-        error_line(f)
+    File.foreach(file) do |line|
+      if line.include?('error')
+        @string = line
         break # only first error line
       end
     end
-    puts '' unless @error # return an empty line
-  end
-
-  def error?(line)
-    line.include?('error')
-  end
-
-  def error_line(line)
-    puts line
-    @error = true
+    puts @string
   end
 end
 
 puts 'Return from errors file:' # error first line
-Task1.new('data_test_with_errors.log')
+Task1.new('data_test_with_errors.log').task_1
 
 puts 'Return from NOT errors file:' # empty line
-Task1.new('data_test_without_errors.log')
+Task1.new('data_test_without_errors.log').task_1
