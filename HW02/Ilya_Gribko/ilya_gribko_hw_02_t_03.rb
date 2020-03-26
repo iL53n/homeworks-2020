@@ -39,13 +39,11 @@ class Task3
   end
 
   def output_result
-    n = 0
-    while n < @arr_data.count - 1
-      reduced = @arr_data[n + 1]
-      subtracted = @arr_data[n]
+    @arr_data.each_cons(2) do |hash|
+      reduced = hash[1]
+      subtracted = hash[0]
       @arr_durations << difference = difference(reduced, subtracted)
       puts "(#{reduced[:timedate]} - #{subtracted[:timedate]}) = #{difference}"
-      n += 1
     end
   end
 
