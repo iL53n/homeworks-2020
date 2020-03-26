@@ -12,15 +12,15 @@
 # [X] Rubocop check
 # IP_format -- [DATE_format] "MESSAGE_format" ...
 # "DATE_format FROM: IP_format TO: MESSAGE_format"
-#
-# 10.6.246.101 - - [23/Apr/2018:20:29:39 +0300] "POST /grid/2/messages HTTP/1.1" 200 48 0.0290
-# 10.6.246.103 sdds "POST /test/2/messages HTTP/1.1" JHGJYGJH WDWD !!!!!!!!!! [23/Apr/2018:20:30:39 +0300] m
 
 class Task2
   IP_FORMAT = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.freeze
   DATE_FORMAT = %r{\d{1,2}/\w+/\d{4}:\d{2}:\d{2}:\d{2} \+\d{1,4}}.freeze
   MESSAGE_FORMAT = %r{(?<= "POST )(.+)(?= HTTP/1.1)}.freeze
-  LOG_FORMAT = "#{IP_FORMAT} - - \\[#{DATE_FORMAT}\\] \\\"POST #{MESSAGE_FORMAT} \\HTTP/1.1\".*".freeze
+  LOG_FORMAT =
+    "#{IP_FORMAT} - - " \
+    "\\[#{DATE_FORMAT}\\] " \
+    "\\\"POST #{MESSAGE_FORMAT} \\HTTP/1.1\".*".freeze
 
   def initialize(file_name)
     @arr = []
