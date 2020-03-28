@@ -22,13 +22,15 @@ class Task2
     "\\[#{DATE_FORMAT}\\] " \
     "\\\"POST #{MESSAGE_FORMAT} \\HTTP/1.1\".*".freeze
 
+  attr_reader :file_name
+
   def initialize(file_name)
     @file_name = file_name
     @arr = []
   end
 
   def task_2
-    parse_log_file(@file_name) if check_file_name?(@file_name)
+    parse_log_file(file_name) if check_file_name?(file_name)
     @arr.empty? ? @arr : puts(@arr)
   end
 
