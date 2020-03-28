@@ -15,13 +15,13 @@ class Task3
   DATETIME_FORMAT = /\d{4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}.\d{1}/.freeze
 
   def initialize(file_name)
+    @file_name = file_name
     @arr_data = []
     @arr_durations = []
-    task_3(file_name) if check_file_name?(file_name)
   end
 
-  def task_3(file_name)
-    parse_log_file(file_name)
+  def task_3
+    parse_log_file(@file_name) if check_file_name?(@file_name)
     output_result
     output_array_durations
   end
@@ -74,4 +74,4 @@ class Task3
   end
 end
 
-Task3.new('debug_data_test.log')
+Task3.new('debug_data_test.log').task_3
