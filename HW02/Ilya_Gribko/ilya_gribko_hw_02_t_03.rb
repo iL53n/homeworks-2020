@@ -14,6 +14,8 @@ require 'date'
 class Task3
   DATETIME_FORMAT = /\d{4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}.\d{1}/.freeze
 
+  attr_reader :file_name
+
   def initialize(file_name)
     @file_name = file_name
     @arr_data = []
@@ -21,7 +23,7 @@ class Task3
   end
 
   def task_3
-    parse_log_file(@file_name) if check_file_name?(@file_name)
+    parse_log_file(file_name) if check_file_name?(file_name)
     output_result
     output_array_durations
   end
