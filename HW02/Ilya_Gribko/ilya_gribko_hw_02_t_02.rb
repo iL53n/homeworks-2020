@@ -41,8 +41,8 @@ class Task2
   end
 
   def parse_log_file(file_name)
-    File.foreach(file_name) do |f|
-      @arr << parse_line(f) if format_match?(f)
+    File.foreach(file_name) do |line|
+      @arr << parse_line(line) if format_match?(f)
     end
   end
 
