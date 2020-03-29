@@ -32,7 +32,6 @@ class Task3
 
   def check_file_name?
     File.exist?(file_name) ? true : false
-
   end
 
   def parse_log_file
