@@ -30,19 +30,19 @@ class Task2
   end
 
   def task_2
-    parse_log_file(file_name) if check_file_name?(file_name)
+    check_file_name? ? parse_log_file : puts('File not found!')
     @arr.empty? ? @arr : puts(@arr)
   end
 
   private
 
-  def check_file_name?(file_name)
-    File.exist?(file_name) ? true : puts('File not found!')
+  def check_file_name?
+    File.exist?(file_name) ? true : false
   end
 
-  def parse_log_file(file_name)
+  def parse_log_file
     File.foreach(file_name) do |line|
-      @arr << parse_line(line) if format_match?(f)
+      @arr << parse_line(line) if format_match?(line)
     end
   end
 

@@ -23,20 +23,21 @@ class Task3
   end
 
   def task_3
-    parse_log_file(file_name) if check_file_name?(file_name)
+    check_file_name? ? parse_log_file : puts('File not found!')
     output_result
     output_array_durations
   end
 
   private
 
-  def check_file_name?(file_name)
-    File.exist?(file_name) ? true : puts('File not found!')
+  def check_file_name?
+    File.exist?(file_name) ? true : false
+
   end
 
-  def parse_log_file(file_name)
-    File.foreach(file_name) do |f|
-      @arr_data << add_hash(f) if format_match?(f)
+  def parse_log_file
+    File.foreach(file_name) do |line|
+      @arr_data << add_hash(line) if format_match?(line)
     end
   end
 
