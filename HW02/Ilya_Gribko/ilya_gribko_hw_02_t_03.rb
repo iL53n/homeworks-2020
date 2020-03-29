@@ -14,11 +14,9 @@ require 'date'
 class Task3
   DATETIME_FORMAT = /\d{4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}.\d{1}/.freeze
 
-  attr_reader :file_name
-
   def initialize(file_name)
     @file_name = file_name
-    @arr_data = []
+    @valid_line_arr = []
     @arr_durations = []
   end
 
@@ -30,6 +28,8 @@ class Task3
 
   private
 
+  attr_reader :file_name, :valid_line_arr, :arr_durations
+
   def check_file_name?
     File.exist?(file_name) ? true : false
 
@@ -37,15 +37,15 @@ class Task3
 
   def parse_log_file
     File.foreach(file_name) do |line|
-      @arr_data << add_hash(line) if format_match?(line)
+      valid_line_arr << add_hash(line) if format_match?(line)
     end
   end
 
   def output_result
-    @arr_data.each_cons(2) do |hash|
+    valid_line_arr.each_cons(2) do |hash|
       reduced = hash[1]
       subtracted = hash[0]
-      @arr_durations << difference = difference(reduced, subtracted)
+      arr_durations << difference = difference(reduced, subtracted)
       puts "(#{reduced[:timedate]} - #{subtracted[:timedate]}) = #{difference}"
     end
   end
@@ -55,9 +55,9 @@ class Task3
   end
 
   def output_array_durations
-    if @arr_durations.any?
+    if arr_durations.any?
       puts 'Array of duration between events:'
-      puts @arr_durations
+      puts arr_durations
     else
       puts 0
     end

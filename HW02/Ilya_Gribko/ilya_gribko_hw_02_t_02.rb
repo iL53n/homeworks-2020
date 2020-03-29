@@ -22,19 +22,19 @@ class Task2
     "\\[#{DATE_FORMAT}\\] " \
     "\\\"POST #{MESSAGE_FORMAT} \\HTTP/1.1\".*".freeze
 
-  attr_reader :file_name
-
   def initialize(file_name)
     @file_name = file_name
-    @arr = []
+    @valid_line_arr = []
   end
 
   def task_2
     check_file_name? ? parse_log_file : puts('File not found!')
-    @arr.empty? ? @arr : puts(@arr)
+    valid_line_arr.empty? ? valid_line_arr : puts(valid_line_arr)
   end
 
   private
+
+  attr_reader :file_name, :valid_line_arr
 
   def check_file_name?
     File.exist?(file_name) ? true : false
@@ -42,7 +42,7 @@ class Task2
 
   def parse_log_file
     File.foreach(file_name) do |line|
-      @arr << parse_line(line) if format_match?(line)
+      valid_line_arr << parse_line(line) if format_match?(line)
     end
   end
 
