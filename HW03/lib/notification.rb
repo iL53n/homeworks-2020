@@ -6,27 +6,33 @@ class Notification
   end
 
   def add_new_homework
-    student_notifications << "Add new homework '#{homework.title}'! You can take her to work!"
+    send_student("Add new homework '#{homework.title}'! You can take her to work!")
   end
 
   def homework_to_work
-    student_mentors.each do |mentor|
-      mentor.notifications << "Student '#{homework.student.name} #{homework.student.surname}' accept to work homework: #{homework.title}!"
-    end
+    send_mentors("Student '#{homework.student.name} #{homework.student.surname}' accept to work homework: #{homework.title}!")
   end
 
   def homework_to_check
-    student_mentors.each do |mentor|
-      mentor.notifications << "Student '#{homework.student.name} #{homework.student.surname}' send to check homework: #{homework.title}!"
-    end
+    send_mentors("Student '#{homework.student.name} #{homework.student.surname}' send to check homework: #{homework.title}!")
   end
 
   def accept_homework
-    student_notifications << "Your homework '#{homework.title}' accepted!"
+    send_student("Your homework '#{homework.title}' accepted!")
   end
 
   def reject_homework
-    student_notifications << "Your homework '#{homework.title}' rejected!"
+    send_student("Your homework '#{homework.title}' rejected!")
+  end
+
+  def send_student(message)
+    student_notifications << message
+  end
+
+  def send_mentors(message)
+    student_mentors.each do |mentor|
+      mentor.notifications << message
+    end
   end
 
   def student_mentors

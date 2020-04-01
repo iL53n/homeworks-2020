@@ -31,7 +31,6 @@ class Mentor
     student.mentors << self
   end
 
-
   def mark_as_read!
     @notifications = []
   end
