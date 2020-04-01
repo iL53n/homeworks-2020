@@ -1,5 +1,5 @@
 class Student
-  attr_reader :notifications
+  # attr_reader :notifications, :homeworks
 
   def initialize(name:, surname:)
     @name = name
