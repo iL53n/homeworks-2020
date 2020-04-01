@@ -14,21 +14,25 @@ module App
     mentor = Mentor.new(name: 'Jack', surname: 'Gonsales')
 
     # mentor add new homework
-    homework = mentor.add_homework({ title: 'HW03', description: 'description homework'} )
+    homework = mentor.add_homework(title: 'HW03',
+                                   description: 'description homework',
+                                   student: student)
     # student take to work homework
-    student.to_work(homework)
+    student.to_work!(homework)
+    # student can see homeworks
+    student.homeworks
     # student add answer to homework ToDO: new class Answer?
-    student.add_answer(homework, 'new students answer')
+    student.add_answer!(homework, 'new students answer')
     # student sent to check homework
-    student.to_check(homework)
+    student.to_check!(homework)
     # mentor reject homework
-    mentor.reject(homework)
+    mentor.reject!(homework)
     # ---
-    student.add_answer(homework, 'new students answer')
-    student.to_check(homework)
+    student.add_answer!(homework, 'new students answer')
+    student.to_check!(homework)
     # ---
     # mentor accept homework
-    mentor.accept(homework)
+    mentor.accept!(homework)
 
 =begin
     student.submit_homework!(homework_data)

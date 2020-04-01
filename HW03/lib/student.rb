@@ -1,29 +1,33 @@
 class Student
-  attr_reader :homeworks
+  attr_reader :notifications
 
   def initialize(name:, surname:)
     @name = name
     @surname = surname
     @homeworks = []
+    @notifications = []
   end
 
-  def to_work(homework)
-    homework.student = self
+  def homeworks
+    @homeworks.each do |homework|
+      puts "Status: #{homework.status} ---> #{homework.title} '#{homework.description}'"
+    end
+  end
+
+  def to_work!(homework)
     homework.status = 'to_work'
     @homeworks << homework
     # notification to mentor if mentor subscribed
   end
 
-  def add_answer(homework, answer)
+  def add_answer!(homework, answer)
     homework.answer = answer
   end
 
-  def to_check(homework)
+  def to_check!(homework)
     homework.status = 'to_check'
     # notification to mentor if mentor subscribed
   end
 
-  def submit_homework!(homework_data)
 
-  end
 end

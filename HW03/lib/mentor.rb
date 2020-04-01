@@ -6,17 +6,17 @@ class Mentor
   end
 
   def add_homework(data)
-    Homework.new(data[:title], data[:description])
+    Homework.new(data[:title], data[:description], data[:student])
     # notification to student
   end
 
   # ToDo: refactoring_one check result method
-  def reject(homework)
+  def reject!(homework)
     homework.status = 'to_work'
     # notification to student
   end
 
-  def accept(homework)
+  def accept!(homework)
     homework.status = 'done'
     # notification to student
   end
