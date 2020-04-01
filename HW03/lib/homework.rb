@@ -1,6 +1,6 @@
 class Homework
-  attr_accessor :status, :student, :answer
-  attr_reader :title, :description
+  attr_accessor :status, :answer
+  attr_reader :title, :description, :student
 
   def initialize(title, description, student)
     @title = title

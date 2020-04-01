@@ -26,8 +26,7 @@ class Student
   def to_work!(homework)
     homework.status = 'to_work'
     @homeworks << homework
-    # notification to mentors
-    Notification.new(homework).homework_to_work
+    notification(homework).homework_to_work
   end
 
   def add_answer!(homework, answer)
@@ -36,7 +35,10 @@ class Student
 
   def to_check!(homework)
     homework.status = 'to_check'
-    # notification to mentors
-    Notification.new(homework).homework_to_check
+    notification(homework).homework_to_check
+  end
+
+  def notification(homework)
+    Notification.new(homework)
   end
 end

@@ -9,22 +9,19 @@ class Mentor
 
   def add_homework(data)
     homework = Homework.new(data[:title], data[:description], data[:student])
-    # notification to student
-    Notification.new(homework).add_new_homework
+    notification(homework).add_new_homework
     homework
   end
 
   # ToDo: refactoring_one check result method
   def reject!(homework)
     homework.status = 'to_work'
-    # notification to student
-    Notification.new(homework).reject_homework
+    notification(homework).reject_homework
   end
 
   def accept!(homework)
     homework.status = 'done'
-    # notification to student
-    Notification.new(homework).accept_homework
+    notification(homework).accept_homework
   end
 
   def subscribe_to(student)
@@ -33,5 +30,9 @@ class Mentor
 
   def mark_as_read!
     @notifications = []
+  end
+
+  def notification(homework)
+    Notification.new(homework)
   end
 end
