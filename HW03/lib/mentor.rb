@@ -6,8 +6,10 @@ class Mentor
   end
 
   def add_homework(data)
-    Homework.new(data[:title], data[:description], data[:student])
+    homework = Homework.new(data[:title], data[:description], data[:student])
     # notification to student
+    Notification.new(homework).add_new_homework
+    homework
   end
 
   # ToDo: refactoring_one check result method

@@ -1,5 +1,5 @@
 class Student
-  # attr_reader :notifications, :homeworks
+  attr_reader :notifications, :homeworks
 
   def initialize(name:, surname:)
     @name = name
@@ -8,11 +8,19 @@ class Student
     @notifications = []
   end
 
-  def homeworks
-    @homeworks.each do |homework|
-      puts "Status: #{homework.status} ---> #{homework.title} '#{homework.description}'"
-    end
-  end
+  # def homeworks
+  #   @homeworks.each do |homework|
+  #     puts "Status: #{homework.status} ---> #{homework.title} '#{homework.description}'"
+  #   end
+  # end
+  #
+  # def notifications
+  #   puts 'No messages!' unless @notifications.empty?
+  #
+  #   @notifications.each do |notification|
+  #     puts notification.message
+  #   end
+  # end
 
   def to_work!(homework)
     homework.status = 'to_work'

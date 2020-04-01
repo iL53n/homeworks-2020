@@ -17,6 +17,8 @@ module App
     homework = mentor.add_homework(title: 'HW03',
                                    description: 'description homework',
                                    student: student)
+    # student see notification about new homework
+    student.notifications
     # student take to work homework
     student.to_work!(homework)
     # student can see homeworks
