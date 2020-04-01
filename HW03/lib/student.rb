@@ -36,6 +36,7 @@ class Student
 
   def to_check!(homework)
     homework.status = 'to_check'
-    # notification to mentor if mentor subscribed
+    # notification to mentors
+    Notification.new(homework).homework_to_check
   end
 end

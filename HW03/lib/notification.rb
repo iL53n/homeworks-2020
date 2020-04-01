@@ -15,6 +15,12 @@ class Notification
     end
   end
 
+  def homework_to_check
+    student_mentors.each do |mentor|
+      mentor.notifications << "Student '#{homework.student.name} #{homework.student.surname}' send to check homework: #{homework.title}!"
+    end
+  end
+
   def student_mentors
     homework.student.mentors
   end
