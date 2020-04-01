@@ -5,6 +5,10 @@ class Mentor
     @notifications = []
   end
 
+  def add_homework(data)
+    Homework.new(data[:title], data[:description])
+  end
+
   def subscribe_to(student)
 
   end
