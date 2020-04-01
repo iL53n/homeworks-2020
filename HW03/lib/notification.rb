@@ -6,7 +6,7 @@ class Notification
   end
 
   def add_new_homework
-    student_notifications << "Add new homework #{homework.title}! You can take her to work!"
+    student_notifications << "Add new homework '#{homework.title}'! You can take her to work!"
   end
 
   def homework_to_work
@@ -19,6 +19,14 @@ class Notification
     student_mentors.each do |mentor|
       mentor.notifications << "Student '#{homework.student.name} #{homework.student.surname}' send to check homework: #{homework.title}!"
     end
+  end
+
+  def accept_homework
+    student_notifications << "Your homework '#{homework.title}' accepted!"
+  end
+
+  def reject_homework
+    student_notifications << "Your homework '#{homework.title}' rejected!"
   end
 
   def student_mentors

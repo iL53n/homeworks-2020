@@ -18,11 +18,13 @@ class Mentor
   def reject!(homework)
     homework.status = 'to_work'
     # notification to student
+    Notification.new(homework).reject_homework
   end
 
   def accept!(homework)
     homework.status = 'done'
     # notification to student
+    Notification.new(homework).accept_homework
   end
 
   def subscribe_to(student)
