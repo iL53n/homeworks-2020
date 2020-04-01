@@ -1,9 +1,11 @@
 class Homework
-  attr_reader :title, :description, :students
+  attr_accessor :status, :student
+  attr_reader :title, :description
 
   def initialize(title, description)
     @title = title
     @description = description
-    @students = []
+    @student = nil
+    @status = 'new'
   end
 end
