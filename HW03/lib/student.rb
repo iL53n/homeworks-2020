@@ -19,7 +19,8 @@ class Student
   end
 
   def to_check(homework)
-
+    homework.status = 'to_check'
+    # notification to mentor if mentor subscribed
   end
 
   def submit_homework!(homework_data)
