@@ -19,9 +19,16 @@ module App
     student.to_work(homework)
     # student add answer to homework ToDO: new class Answer?
     student.add_answer(homework, 'new students answer')
-    puts homework.answer
     # student sent to check homework
     student.to_check(homework)
+    # mentor reject homework
+    mentor.reject(homework)
+    # ---
+    student.add_answer(homework, 'new students answer')
+    student.to_check(homework)
+    # ---
+    # mentor accept homework
+    mentor.accept(homework)
 
 =begin
     student.submit_homework!(homework_data)
