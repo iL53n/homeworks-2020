@@ -1,4 +1,6 @@
 class Mentor
+  attr_reader :notifications
+
   def initialize(name:, surname:)
     @name = name
     @surname = surname
@@ -24,7 +26,7 @@ class Mentor
   end
 
   def subscribe_to(student)
-
+    student.mentors << self
   end
 
   def read_notifications!

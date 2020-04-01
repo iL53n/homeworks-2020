@@ -1,12 +1,12 @@
 class Student
-  attr_reader :notifications
-  attr_reader :homeworks
+  attr_reader :name, :surname, :homeworks, :notifications, :mentors
 
   def initialize(name:, surname:)
     @name = name
     @surname = surname
     @homeworks = []
     @notifications = []
+    @mentors = []
   end
 
   # def homeworks
@@ -26,7 +26,8 @@ class Student
   def to_work!(homework)
     homework.status = 'to_work'
     @homeworks << homework
-    # notification to mentor if mentor subscribed
+    # notification to mentors
+    Notification.new(homework).homework_to_work
   end
 
   def add_answer!(homework, answer)

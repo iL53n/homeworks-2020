@@ -18,14 +18,16 @@ module App
                                    description: 'description homework',
                                    student: student)
     # student see notification about new homework
-    puts student.notifications
+    student.notifications
     # student mark as read all notifications
     student.mark_as_read!
+    # mentor subscribe to student
+    mentor.subscribe_to(student)
     # student take to work homework
     student.to_work!(homework)
     # student can see homeworks
     student.homeworks
-    # student add answer to homework ToDO: new class Answer?
+    # student add answer to homework
     student.add_answer!(homework, 'new students answer')
     # student sent to check homework
     student.to_check!(homework)
