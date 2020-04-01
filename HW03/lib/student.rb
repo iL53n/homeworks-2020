@@ -1,5 +1,6 @@
 class Student
-  attr_reader :notifications, :homeworks
+  attr_reader :notifications
+  attr_reader :homeworks
 
   def initialize(name:, surname:)
     @name = name
@@ -15,12 +16,12 @@ class Student
   # end
   #
   # def notifications
-  #   puts 'No messages!' unless @notifications.empty?
-  #
-  #   @notifications.each do |notification|
-  #     puts notification.message
-  #   end
+  #   @notifications.empty? ? puts('No messages!') : @notifications.each { |message| puts(message) }
   # end
+
+  def mark_as_read!
+    @notifications = []
+  end
 
   def to_work!(homework)
     homework.status = 'to_work'
@@ -36,6 +37,4 @@ class Student
     homework.status = 'to_check'
     # notification to mentor if mentor subscribed
   end
-
-
 end

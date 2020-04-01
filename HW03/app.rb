@@ -18,7 +18,9 @@ module App
                                    description: 'description homework',
                                    student: student)
     # student see notification about new homework
-    student.notifications
+    puts student.notifications
+    # student mark as read all notifications
+    student.mark_as_read!
     # student take to work homework
     student.to_work!(homework)
     # student can see homeworks
