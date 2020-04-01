@@ -13,6 +13,7 @@ module App
     student = Student.new(name: 'John', surname: 'Doe')
     mentor = Mentor.new(name: 'Jack', surname: 'Gonsales')
 
+=begin
     student.submit_homework!(homework_data)
     student.homeworks # => [Homework, ...]
 
@@ -24,5 +25,6 @@ module App
 
     mentor.read_notifications!
     mentor.notifications # => []
+=end
   end
 end
