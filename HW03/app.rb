@@ -8,43 +8,43 @@ require_relative 'lib/mentor'
 require_relative 'lib/homework'
 require_relative 'lib/notification'
 
-module App
-  def self.run
-    student = Student.new(name: 'John', surname: 'Doe')
-    mentor = Mentor.new(name: 'Jack', surname: 'Gonsales')
+student = Student.new(name: 'John', surname: 'Doe')
+mentor = Mentor.new(name: 'Jack', surname: 'Gonsales')
 
-    # mentor add new homework
-    homework = mentor.add_homework(title: 'HW03',
-                                   description: 'description homework',
-                                   student: student)
-    # student see notification about new homework
-    puts student.notifications # show result
-    # student mark as read all notifications
-    student.mark_as_read!
-    # mentor subscribe to student
-    mentor.subscribe_to!(student)
-    # student take to work homework
-    puts mentor.notifications # show result
-    student.to_work!(homework)
-    puts mentor.notifications # show result
-    mentor.mark_as_read!
-    # student can see homeworks
-    student.homeworks
-    # student add answer to homework
-    student.add_answer!(homework, 'new students answer')
-    # student sent to check homework
-    student.to_check!(homework)
-    puts mentor.notifications # show result
-    # mentor reject homework
-    mentor.reject!(homework)
-    # ---
-    student.add_answer!(homework, 'new students answer')
-    student.to_check!(homework)
-    # ---
-    # mentor accept homework
-    mentor.accept!(homework)
-    puts student.notifications # show result
-  end
-end
+# mentor add new homework
+homework = mentor.add_homework(title: 'HW03',
+                               description: 'description homework',
+                               student: student)
 
-App.run
+# student see notification about new homework
+student.notifications
+# student mark as read all notifications
+student.mark_as_read!
+# mentor subscribe to student
+mentor.subscribe_to!(student)
+# student take to work homework
+student.to_work!(homework)
+# mentor see notification about homework to work
+mentor.notifications
+# mentor mark as read all notifications
+mentor.mark_as_read!
+# student can see homeworks
+student.homeworks
+# student add answer to homework
+student.add_answer!(homework, 'new students answer')
+# student sent to check homework
+student.to_check!(homework)
+# mentor see notification about homework to check
+mentor.notifications
+# mentor reject homework
+mentor.reject!(homework)
+# student see notification about homework was reject
+student.notifications
+# ---
+student.add_answer!(homework, 'new students answer_after reject')
+student.to_check!(homework)
+# ---
+# mentor accept homework
+mentor.accept!(homework)
+# student see notification about homework was accept
+student.notifications

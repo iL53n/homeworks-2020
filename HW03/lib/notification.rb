@@ -12,12 +12,14 @@ class Notification
 
   def homework_to_work
     notify(receiver: :mentors,
-           message: "Student '#{student_str}' accept to work: #{homework.title}!")
+           message: "Student '#{student_str}' " \
+                    "accept to work: #{homework.title}!")
   end
 
   def homework_to_check
     notify(receiver: :mentors,
-           message: "Student '#{student_str}' send to check: #{homework.title}!")
+           message: "Student '#{student_str}' " \
+                    "send to check: #{homework.title}!")
   end
 
   def accept_homework

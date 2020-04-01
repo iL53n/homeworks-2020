@@ -11,12 +11,17 @@ class Student
 
   # def homeworks
   #   @homeworks.each do |homework|
-  #     puts "Status: #{homework.status} ---> #{homework.title} '#{homework.description}'"
+  #     puts "Status: #{homework.status} ---> " \
+  #          "#{homework.title} '#{homework.description}'"
   #   end
   # end
   #
   # def notifications
-  #   @notifications.empty? ? puts('No messages!') : @notifications.each { |message| puts(message) }
+  #   if @notifications.empty?
+  #     puts 'No messages!'
+  #   else
+  #     @notifications.each { |message| puts(message) }
+  #   end
   # end
 
   def mark_as_read!
