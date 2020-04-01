@@ -44,20 +44,6 @@ module App
     # mentor accept homework
     mentor.accept!(homework)
     puts student.notifications #
-
-=begin
-    student.submit_homework!(homework_data)
-    student.homeworks # => [Homework, ...]
-
-    mentor.subscribe_to(student)
-    mentor.notifications # => []
-
-    student.submit_homework!(homework_data)
-    mentor.notifications # => [Notification, ...]
-
-    mentor.read_notifications!
-    mentor.notifications # => []
-=end
   end
 end
 

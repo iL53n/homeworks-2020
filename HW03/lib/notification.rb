@@ -10,11 +10,11 @@ class Notification
   end
 
   def homework_to_work
-    send_mentors("Student '#{homework.student.name} #{homework.student.surname}' accept to work homework: #{homework.title}!")
+    send_mentors("Student '#{student_str}' accept to work homework: #{homework.title}!")
   end
 
   def homework_to_check
-    send_mentors("Student '#{homework.student.name} #{homework.student.surname}' send to check homework: #{homework.title}!")
+    send_mentors("Student '#{student_str}' send to check homework: #{homework.title}!")
   end
 
   def accept_homework
@@ -33,6 +33,10 @@ class Notification
     student_mentors.each do |mentor|
       mentor.notifications << message
     end
+  end
+
+  def student_str
+    "#{homework.student.name} #{homework.student.surname}"
   end
 
   def student_mentors
