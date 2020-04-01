@@ -18,15 +18,15 @@ module App
                                    description: 'description homework',
                                    student: student)
     # student see notification about new homework
-    puts student.notifications #
+    puts student.notifications # show result
     # student mark as read all notifications
     student.mark_as_read!
     # mentor subscribe to student
-    mentor.subscribe_to(student)
+    mentor.subscribe_to!(student)
     # student take to work homework
-    puts mentor.notifications #
+    puts mentor.notifications # show result
     student.to_work!(homework)
-    puts mentor.notifications #
+    puts mentor.notifications # show result
     mentor.mark_as_read!
     # student can see homeworks
     student.homeworks
@@ -34,7 +34,7 @@ module App
     student.add_answer!(homework, 'new students answer')
     # student sent to check homework
     student.to_check!(homework)
-    puts mentor.notifications #
+    puts mentor.notifications # show result
     # mentor reject homework
     mentor.reject!(homework)
     # ---
@@ -43,7 +43,7 @@ module App
     # ---
     # mentor accept homework
     mentor.accept!(homework)
-    puts student.notifications #
+    puts student.notifications # show result
   end
 end
 

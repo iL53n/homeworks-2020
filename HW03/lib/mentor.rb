@@ -13,7 +13,6 @@ class Mentor
     homework
   end
 
-  # ToDo: refactoring_one check result method
   def reject!(homework)
     homework.status = 'to_work'
     notification(homework).reject_homework
@@ -24,7 +23,7 @@ class Mentor
     notification(homework).accept_homework
   end
 
-  def subscribe_to(student)
+  def subscribe_to!(student)
     student.mentors << self
   end
 

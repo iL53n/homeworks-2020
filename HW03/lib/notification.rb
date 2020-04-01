@@ -6,26 +6,39 @@ class Notification
   end
 
   def add_new_homework
-    send_student("Add new homework '#{homework.title}'! You can take her to work!")
+    notify(receiver: :student,
+           message: "Add new homework '#{homework.title}'!")
   end
 
   def homework_to_work
-    send_mentors("Student '#{student_str}' accept to work homework: #{homework.title}!")
+    notify(receiver: :mentors,
+           message: "Student '#{student_str}' accept to work: #{homework.title}!")
   end
 
   def homework_to_check
-    send_mentors("Student '#{student_str}' send to check homework: #{homework.title}!")
+    notify(receiver: :mentors,
+           message: "Student '#{student_str}' send to check: #{homework.title}!")
   end
 
   def accept_homework
-    send_student("Your homework '#{homework.title}' accepted!")
+    notify(receiver: :student,
+           message: "Your homework '#{homework.title}' accepted!")
   end
 
   def reject_homework
-    send_student("Your homework '#{homework.title}' rejected!")
+    notify(receiver: :student,
+           message: "Your homework '#{homework.title}' rejected!")
   end
 
   private
+
+  def notify(receiver:, message:)
+    if receiver == :student
+      send_student(message)
+    elsif receiver == :mentors
+      send_mentors(message)
+    end
+  end
 
   def send_student(message)
     student_notifications << message
