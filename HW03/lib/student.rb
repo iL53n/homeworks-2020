@@ -38,6 +38,8 @@ class Student
     notification(homework).homework_to_check
   end
 
+  private
+
   def notification(homework)
     Notification.new(homework)
   end

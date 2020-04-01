@@ -32,6 +32,8 @@ class Mentor
     @notifications = []
   end
 
+  private
+
   def notification(homework)
     Notification.new(homework)
   end

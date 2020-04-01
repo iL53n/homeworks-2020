@@ -25,6 +25,8 @@ class Notification
     send_student("Your homework '#{homework.title}' rejected!")
   end
 
+  private
+
   def send_student(message)
     student_notifications << message
   end
