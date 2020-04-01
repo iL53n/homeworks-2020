@@ -17,7 +17,11 @@ module App
     homework = mentor.add_homework({ title: 'HW03', description: 'description homework'} )
     # student take to work homework
     student.to_work(homework)
-
+    # student add answer to homework ToDO: new class Answer?
+    student.add_answer(homework, 'new students answer')
+    puts homework.answer
+    # student sent to check homework
+    student.to_check(homework)
 
 =begin
     student.submit_homework!(homework_data)

@@ -14,6 +14,14 @@ class Student
     # notification to mentor if mentor subscribed
   end
 
+  def add_answer(homework, answer)
+    homework.answer = answer
+  end
+
+  def to_check(homework)
+
+  end
+
   def submit_homework!(homework_data)
 
   end
