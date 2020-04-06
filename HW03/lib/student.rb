@@ -1,5 +1,9 @@
 class Student
-  attr_reader :name, :surname, :homeworks, :notifications, :mentors
+  TO_WORK = 'to_work'.freeze
+  TO_CHECK = 'to_check'.freeze
+
+  attr_accessor :homeworks, :notifications
+  attr_reader :name, :surname, :mentors
 
   def initialize(name:, surname:)
     @name = name
@@ -10,12 +14,12 @@ class Student
   end
 
   def mark_as_read!
-    @notifications.clear
+    notifications.clear
   end
 
   def to_work!(homework)
-    homework.status = 'to_work'
-    @homeworks << homework
+    homework.status = TO_WORK
+    homeworks << homework
     notification(homework: homework).homework_to_work
   end
 
@@ -24,7 +28,7 @@ class Student
   end
 
   def to_check!(homework)
-    homework.status = 'to_check'
+    homework.status = TO_CHECK
     notification(homework: homework).homework_to_check
   end
 

@@ -2,7 +2,7 @@ class Mentor
   TO_WORK = 'to_work'.freeze
   DONE = 'done'.freeze
 
-  attr_reader :notifications
+  attr_accessor :notifications
 
   def initialize(name:, surname:)
     @name = name
@@ -33,7 +33,7 @@ class Mentor
   end
 
   def mark_as_read!
-    @notifications = []
+    notifications.clear
   end
 
   private
