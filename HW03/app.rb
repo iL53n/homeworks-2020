@@ -37,7 +37,7 @@ student.to_check!(homework)
 # mentor see notification about homework to check
 mentor.notifications
 # mentor reject homework
-mentor.reject!(homework)
+mentor.reject_to_work!(homework)
 # student see notification about homework was reject
 student.notifications
 # ---

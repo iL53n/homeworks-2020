@@ -1,4 +1,7 @@
 class Mentor
+  TO_WORK = 'to_work'.freeze
+  DONE = 'done'.freeze
+
   attr_reader :notifications
 
   def initialize(name:, surname:)
@@ -8,19 +11,21 @@ class Mentor
   end
 
   def add_homework(data)
-    homework = Homework.new(data[:title], data[:description], data[:student])
-    notification(homework).add_new_homework
+    homework = Homework.new(title: data[:title],
+                            description: data[:description],
+                            student: data[:student])
+    notification(homework: homework).add_new_homework
     homework
   end
 
-  def reject!(homework)
-    homework.status = 'to_work'
-    notification(homework).reject_homework
+  def reject_to_work!(homework)
+    homework.status = TO_WORK
+    notification(homework: homework).reject_homework
   end
 
   def accept!(homework)
-    homework.status = 'done'
-    notification(homework).accept_homework
+    homework.status = DONE
+    notification(homework: homework).accept_homework
   end
 
   def subscribe_to!(student)

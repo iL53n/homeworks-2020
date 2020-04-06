@@ -1,7 +1,7 @@
 class Notification
   attr_reader :homework
 
-  def initialize(homework)
+  def initialize(homework:)
     @homework = homework
   end
 
@@ -12,13 +12,13 @@ class Notification
 
   def homework_to_work
     notify(receiver: :mentors,
-           message: "Student '#{student_str}' " \
+           message: "Student '#{student_full_name}' " \
                     "accept to work: #{homework.title}!")
   end
 
   def homework_to_check
     notify(receiver: :mentors,
-           message: "Student '#{student_str}' " \
+           message: "Student '#{student_full_name}' " \
                     "send to check: #{homework.title}!")
   end
 
@@ -36,23 +36,23 @@ class Notification
 
   def notify(receiver:, message:)
     if receiver == :student
-      send_student(message)
+      notify_student(message)
     elsif receiver == :mentors
-      send_mentors(message)
+      notify_mentors(message)
     end
   end
 
-  def send_student(message)
+  def notify_student(message)
     student_notifications << message
   end
 
-  def send_mentors(message)
+  def notify_mentors(message)
     student_mentors.each do |mentor|
       mentor.notifications << message
     end
   end
 
-  def student_str
+  def student_full_name
     "#{homework.student.name} #{homework.student.surname}"
   end
 
