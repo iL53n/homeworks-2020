@@ -8,6 +8,7 @@ require_relative 'lib/mentor'
 require_relative 'lib/homework'
 require_relative 'lib/notification'
 require_relative 'lib/student_notification'
+require_relative 'lib/mentor_notification'
 
 student = Student.new(name: 'John', surname: 'Doe')
 mentor = Mentor.new(name: 'Jack', surname: 'Gonsales')

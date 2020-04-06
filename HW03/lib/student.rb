@@ -35,6 +35,6 @@ class Student
   private
 
   def notification(homework)
-    Notification.new(homework)
+    MentorNotification.new(homework)
   end
 end
