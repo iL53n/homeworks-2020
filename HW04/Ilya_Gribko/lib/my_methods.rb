@@ -5,12 +5,13 @@
 # Executes code in block for each element of the array and return *new* array
 # array.map {|item| block }  #=> array
 # 3. Array#select
-# Returns an array containing all `enum` elements for which the result of processing block is not `false`
+# Returns an array containing all `enum` elements for which the result
+# of processing block is not `false`
 # enum.select {| obj | block }  => array
 
 class Array
   def my_each
-    return unless block_given?
+    return to_enum(:my_each) unless block_given?
 
     i = 0
     while i < size
@@ -22,7 +23,7 @@ class Array
   end
 
   def my_map
-    return unless block_given?
+    return to_enum(:my_map) unless block_given?
 
     map_array = []
 
@@ -36,7 +37,7 @@ class Array
   end
 
   def my_select
-    return unless block_given?
+    return to_enum(:my_select) unless block_given?
 
     select_array = []
 
@@ -49,6 +50,3 @@ class Array
     select_array
   end
 end
-
-
-

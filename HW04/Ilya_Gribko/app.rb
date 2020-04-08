@@ -1,4 +1,4 @@
-# [ ] Implement your own Array#my_map, Array#my_select, Array#my_each.
+# [X] Implement your own Array#my_map, Array#my_select, Array#my_each.
 # [ ] Write specs for each of your methods using RSpec.
 # Notes: implement these methods in your custom module and then include it in the Array class.
 # Important: Do not use #each, #select, #map in your implementation.
@@ -7,6 +7,7 @@ require_relative 'lib/my_methods'
 
 test_array = (1..10).to_a
 
+# check return
 p test_array.each { |i| i >= 3 && i <= 7 } # nil
 p test_array.my_each { |i| i >= 3 && i <= 7 } # nil
 p test_array.map { |i| i >= 3 && i <= 7 } # array true or false
