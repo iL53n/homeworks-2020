@@ -9,11 +9,12 @@ test_array = [0, 1, 1, 2, 3, 5, 8]
 
 ### my_each
 # { }
-#test_array.my_each { |i| puts i += 1 }
+test_array.my_each { |i| print i += 1 }
 # do-end
-# test_array.my_each do |i|
-#   puts i
-# end
+puts ''
+test_array.my_each do |i|
+  print i
+end
 
 ### my_map
 # { }
@@ -27,8 +28,8 @@ test_array = [0, 1, 1, 2, 3, 5, 8]
 
 ### my_select
 # { }
-test_array.my_select { |i| puts i += 1 }
+# test_array.my_select { |i| puts i += 1 }
 # do-end
-test_array.my_select do |i|
-  puts i
-end
+# test_array.my_select do |i|
+#   puts i
+# end
