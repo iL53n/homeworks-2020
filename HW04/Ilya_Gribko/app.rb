@@ -5,16 +5,23 @@
 
 require_relative 'lib/my_methods'
 
-test_array = [0, 1, 1, 2, 3, 5, 8]
+test_array = (1..10).to_a
+
+p test_array.each { |i| i >= 3 && i <= 7 } # nil
+p test_array.my_each { |i| i >= 3 && i <= 7 } # nil
+p test_array.map { |i| i >= 3 && i <= 7 } # array true or false
+p test_array.my_map { |i| i >= 3 && i <= 7 } # array true or false
+p test_array.select { |i| i >= 3 && i <= 7 } # values array if value true
+p test_array.my_select { |i| i >= 3 && i <= 7 } # values array if value true
+
 
 ### my_each
 # { }
-test_array.my_each { |i| print i += 1 }
+# test_array.my_each { |i| print i += 1 }
 # do-end
-puts ''
-test_array.my_each do |i|
-  print i
-end
+# test_array.my_each do |i|
+#   print i
+# end
 
 ### my_map
 # { }

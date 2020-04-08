@@ -17,6 +17,8 @@ class Array
       yield(self[i])
       i += 1
     end
+
+    self
   end
 
   def my_map
@@ -40,7 +42,7 @@ class Array
 
     i = 0
     while i < size
-      select_array << yield(self[i])
+      select_array << self[i] if yield(self[i])
       i += 1
     end
 
