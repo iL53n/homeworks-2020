@@ -10,35 +10,41 @@
 
 class Array
   def my_each
-    i = 0
-    while i < size
-      yield(self[i])
-      i += 1
+    if block_given?
+      i = 0
+      while i < size
+        yield(self[i])
+        i += 1
+      end
     end
   end
 
   def my_map
-    return_array = []
+    if block_given?
+      map_array = []
 
-    i = 0
-    while i < size
-      return_array << yield(self[i])
-      i += 1
+      i = 0
+      while i < size
+        map_array << yield(self[i])
+        i += 1
+      end
+
+      map_array
     end
-
-    return_array
   end
 
   def my_select
-    return_array = []
+    if block_given?
+      select_array = []
 
-    i = 0
-    while i < size
-      return_array << yield(self[i])
-      i += 1
+      i = 0
+      while i < size
+        select_array << yield(self[i])
+        i += 1
+      end
+
+      select_array
     end
-
-    return_array
   end
 end
 
