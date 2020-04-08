@@ -5,3 +5,12 @@
 
 require_relative 'lib/my_methods'
 
+test_array = [0, 1, 1, 2, 3, 5, 8]
+
+### my_each
+# { }
+test_array.my_each { |i| puts i += 1 }
+# do-end
+test_array.my_each do |i|
+  puts i
+end

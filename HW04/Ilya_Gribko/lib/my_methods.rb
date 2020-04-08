@@ -1,13 +1,24 @@
-# my_map, my_select, my_each.
+# 1. Array#my_each
+# Executes code in block for each element of the array
+# array.each { |item| block }  #=> array
 
-def my_map
+class Array
+  def my_each
+    i = 0
+    while i < size
+      yield(self[i])
+      i += 1
+    end
+  end
 
+  def my_map
+
+  end
+
+  def my_select
+
+  end
 end
 
-def my_select
 
-end
 
-def my_each
-
-end
