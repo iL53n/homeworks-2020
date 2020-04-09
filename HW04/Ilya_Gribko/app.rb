@@ -18,7 +18,7 @@ p test_array.my_select { |i| i >= 3 && i <= 7 } # values array if value true
 
 ### my_each
 # { }
-test_array.my_each { |i| print i += 1 }
+# test_array.my_each { |i| print i += 1 }
 # do-end
 # test_array.my_each do |i|
 #   print i

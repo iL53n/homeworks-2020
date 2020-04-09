@@ -3,7 +3,7 @@ require_relative '../lib/my_methods'
 RSpec.describe Array, type: :class do
   subject { described_class.new((1..5).to_a) }
   let(:calculation_block) { proc { |element| print element += 1 } }
-  let(:condition_block) { proc { |element| element >= 3 && element <= 7 } }
+  let(:condition_block) { proc { |element| element >= 2 && element <= 4 } }
 
   describe '#my_each' do
     context 'block given' do
@@ -49,13 +49,13 @@ RSpec.describe Array, type: :class do
     context 'block given' do
       context 'calculation block' do
         it 'executes code in block for each element and return new array' do
-          expect(subject.my_map(&calculation_block)).to eq [2, 3, 4, 5, 6]
+          expect(subject.my_map(&calculation_block)).to match_array([2, 3, 4, 5, 6])
         end
       end
 
       context 'condition block' do
         it 'check for each element and return binary array' do
-          expect(subject.my_map(&condition_block)).to eq [false, false, true, true, true]
+          expect(subject.my_map(&condition_block)).to match_array([false, true, true, true, false])
         end
       end
     end
@@ -71,7 +71,7 @@ RSpec.describe Array, type: :class do
   describe '#my_select' do
     context 'block given' do
       it 'returns an array containing all `enum` elements if not `false`' do
-
+        expect(subject.my_select(&condition_block)).to match_array([2, 3, 4])
       end
     end
 
