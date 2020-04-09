@@ -1,5 +1,5 @@
 # [X] Implement your own Array#my_map, Array#my_select, Array#my_each.
-# [ ] Write specs for each of your methods using RSpec.
+# [X] Write specs for each of your methods using RSpec.
 # Notes: implement these methods in your custom module and then include it in the Array class.
 # Important: Do not use #each, #select, #map in your implementation.
 
@@ -36,8 +36,8 @@ p test_array.my_select { |i| i >= 3 && i <= 7 } # values array if value true
 
 ### my_select
 # { }
-# test_array.my_select { |i| puts i += 1 }
+# test_array.my_select { |i| i >= 3 && i <= 7 }
 # do-end
 # test_array.my_select do |i|
-#   puts i
+#   puts i >= 3 && i <= 7
 # end
