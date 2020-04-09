@@ -22,7 +22,7 @@ RSpec.describe Array, type: :class do
       context 'condition block' do
         it 'executes code in block for each element' do
           expect do
-            subject.my_each(&calculation_block)
+            subject.my_each(&condition_block)
           end.to output(nil).to_stdout
         end
 
@@ -44,9 +44,19 @@ RSpec.describe Array, type: :class do
   end
 
   describe '#my_map' do
-    context 'block given' do
-      it 'executes code in block for each element and return new array' do
+    let(:calculation_block) { proc { |element| element += 1 } }
 
+    context 'block given' do
+      context 'calculation block' do
+        it 'executes code in block for each element and return new array' do
+          expect(subject.my_map(&calculation_block)).to eq [2, 3, 4, 5, 6]
+        end
+      end
+
+      context 'condition block' do
+        it 'check for each element and return binary array' do
+          expect(subject.my_map(&condition_block)).to eq [false, false, true, true, true]
+        end
       end
     end
 
