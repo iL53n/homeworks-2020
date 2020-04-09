@@ -1,12 +1,34 @@
 require_relative '../lib/my_methods'
 
 RSpec.describe Array, type: :class do
-  subject { described_class.new((1..10).to_a) }
+  subject { described_class.new((1..5).to_a) }
+  let(:calculation_block) { proc { |element| print element += 1 } }
+  let(:condition_block) { proc { |element| element >= 3 && element <= 7 } }
 
   describe '#my_each' do
     context 'block given' do
-      it 'executes code in block for each element and return original array' do
+      context 'calculation block' do
+        it 'executes code in block for each element' do
+          expect do
+            subject.my_each(&calculation_block)
+          end.to output('23456').to_stdout
+        end
 
+        it 'return original array' do
+          expect(subject.my_each(&calculation_block)).to eq subject
+        end
+      end
+
+      context 'condition block' do
+        it 'executes code in block for each element' do
+          expect do
+            subject.my_each(&calculation_block)
+          end.to output(nil).to_stdout
+        end
+
+        it 'return original array' do
+          expect(subject.my_each(&condition_block)).to eq subject
+        end
       end
     end
 
