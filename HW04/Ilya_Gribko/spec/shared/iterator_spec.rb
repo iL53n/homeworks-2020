@@ -1,12 +1,18 @@
 RSpec.shared_examples 'block not given' do
-  it 'return Enumerator object with original array' do
-    # option 1
-    expect(subject.method(iterator).call)
+  # option 1
+  it 'return Enumerator object' do
+    expect(array.method(iterator).call)
       .to be_an_instance_of(Enumerator)
-    expect(subject.method(iterator).call.to_a)
+  end
+
+  it 'return original array' do
+    expect(array.method(iterator).call.to_a)
       .to match_array(subject)
-    # option 2
-    expect(subject.method(iterator).call.inspect)
-      .to eq(subject.to_enum(iterator).inspect)
+  end
+  # option 2
+
+  it 'return Enumerator object with original array' do
+    expect(array.method(iterator).call.inspect)
+      .to eq(array.to_enum(iterator).inspect)
   end
 end
