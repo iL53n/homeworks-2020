@@ -4,7 +4,7 @@ require_relative 'shared/iterator_spec'
 require_relative '../lib/my_methods'
 
 RSpec.describe Array, type: :class do
-  array { described_class.new((1..5).to_a) }
+  subject(:array) { described_class.new((1..5).to_a) }
 
   let(:calculation_block) { ->(element) { print(element + 1) } }
   let(:condition_block) { ->(element) { element >= 2 && element <= 4 } }

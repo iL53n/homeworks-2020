@@ -7,10 +7,10 @@ RSpec.shared_examples 'block not given' do
 
   it 'return original array' do
     expect(array.method(iterator).call.to_a)
-      .to match_array(subject)
+      .to match_array(array)
   end
-  # option 2
 
+  # option 2
   it 'return Enumerator object with original array' do
     expect(array.method(iterator).call.inspect)
       .to eq(array.to_enum(iterator).inspect)
